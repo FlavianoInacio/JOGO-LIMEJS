@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:fb0189a5f3b16079e9bb754c6f368a71:21f2e07bb00f858ceacea1d064a2cc4a:5f7a6e04e05c6a4e4aed0ee96b7dec4f$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="hero.png" width="31" height="299">
+    <sprite n="hero-c-1.png" x="2" y="36" w="25" h="31" pX="0.5" pY="0.5" oX="2" oY="1" oW="29" oH="32"/>
+    <sprite n="hero-c-2.png" x="2" y="69" w="25" h="31" pX="0.5" pY="0.5" oX="3" oY="0" oW="33" oH="32"/>
+    <sprite n="hero-d-1.png" x="2" y="233" w="22" h="31" pX="0.5" pY="0.5" oX="2" oY="1" oW="31" oH="32"/>
+    <sprite n="hero-d-2.png" x="2" y="266" w="22" h="31" pX="0.5" pY="0.5" oX="3" oY="0" oW="30" oH="31"/>
+    <sprite n="hero-e-1.png" x="2" y="167" w="23" h="31" pX="0.5" pY="0.5" oX="1" oY="1" oW="30" oH="32"/>
+    <sprite n="hero-e-2.png" x="2" y="200" w="23" h="31" pX="0.5" pY="0.5" oX="3" oY="1" oW="32" oH="32"/>
+    <sprite n="hero-f-0.png" x="2" y="2" w="27" h="32" pX="0.5" pY="0.5" oX="3" oY="0" oW="35" oH="32"/>
+    <sprite n="hero-f-1.png" x="2" y="102" w="25" h="31" pX="0.5" pY="0.5" oX="3" oY="1" oW="32" oH="33"/>
+    <sprite n="hero-f-2.png" x="2" y="135" w="25" h="30" pX="0.5" pY="0.5" oX="3" oY="0" oW="32" oH="30"/>
+</TextureAtlas>

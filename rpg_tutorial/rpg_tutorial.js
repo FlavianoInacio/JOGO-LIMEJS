@@ -11,6 +11,12 @@ goog.require('goog.math');
 goog.require('rpg_tutorial.Button');
 goog.require('rpg_tutorial.Game');
 goog.require('rpg_tutorial.Ator');
+goog.require('lime.fill.Frame');
+goog.require('lime.animation.KeyframeAnimation');
+goog.require('lime.animation.MoveBy');
+goog.require('lime.SpriteSheet');
+goog.require('lime.parser.JSON');
+goog.require('lime.ASSETS.hero.plist');
 
 rpg_tutorial.WIDTH = 768;
 rpg_tutorial.HEIGHT = 1004;
@@ -20,6 +26,7 @@ rpg_tutorial.HEIGHT = 1004;
    rpg_tutorial.start = function(){ 
 	rpg_tutorial.director = new lime.Director(document.body, rpg_tutorial.WIDTH, rpg_tutorial.HEIGHT);
 	rpg_tutorial.director.makeMobileWebAppCapable();
+	rpg_tutorial.ss = new lime.SpriteSheet('hero.png',lime.ASSETS.hero.plist);
 	rpg_tutorial.menuInicial();
 };
 
@@ -56,7 +63,7 @@ rpg_tutorial.loadGame = function() {
    	contents.appendChild(descri);
    	contents.appendChild(imgHero);
 	var mapScene = new lime.Scene();
-	var mapLayer = new lime.Layer().setPosition(0,0).setRenderer(lime.Renderer.CANVAS).setAnchorPoint(0,0);
+	var mapLayer = new lime.Layer();
 	var gameMap = new lime.Sprite().setFill('sprites/map1.png').setPosition(0,0).setAnchorPoint(0,0);
 	var hero = new lime.Sprite().setSize(65,65).setFill(hero1.lado).setPosition(100,400).setAnchorPoint(0,0); 
 	var heroFriend = new lime.Sprite().setSize(65,65).setFill('sprites/heroFriendLado.png').setPosition(200,400).setAnchorPoint(0,0);   
@@ -94,10 +101,11 @@ rpg_tutorial.loadGame = function() {
 
 
 
-   	goog.events.listen(gameMap,['mousedown','touchstart'],function(e){
+   	goog.events.listen(mapScene,['mousedown','touchstart'],function(e){
    		if(conversas>4)
    		{
-   			var evento = new lime.animation.MoveTo(e.position.x,e.position.y).setDuration(2);
+   			  rpg_tutorial.moveToPosition(hero,mapScene.localToNode(e.position,mapLayer));
+   		/*	var evento = new lime.animation.MoveTo(e.position.x,e.position.y).setDuration(2);
    			var eventoOr = new lime.animation.MoveTo(e.position.x,e.position.y-80).setDuration(2);
    			hero.runAction(evento);
 			heroFriend.runAction(eventoOr);
@@ -115,7 +123,7 @@ rpg_tutorial.loadGame = function() {
 			e.swallow(['mouseup','touchend','touchcancel'],function(){
 			hero.setFill(hero1.frente);
 			heroFriend.setFill(hero1Friend.frente);
-		});
+		}); */
    		}
    		else if(conversas==0)
    		{
@@ -190,3 +198,34 @@ rpg_tutorial.labelFace = function(personagemCaminho)
 // Principal = Thurin
 // azul  = Onirien
 // irmao = Thir
+
+rpg_tutorial.moveToPosition = function(monster,pos){
+    
+    var delta = goog.math.Coordinate.difference(pos,monster.getPosition()),
+        angle = Math.atan2(-delta.y,delta.x);
+    
+    //determine the direction    
+    var dir = Math.round(angle/(Math.PI*2)*8);
+    var dirs = ['d','c','c','c','e','f','f','f'];
+    if(dir<0) dir=8+dir;
+    dir = dirs[dir];
+    
+    //move
+    var move =new lime.animation.MoveBy(delta).setEasing(lime.animation.Easing.LINEAR).setSpeed(1);
+    monster.runAction(move);
+	
+	// show animation
+	var anim = new lime.animation.KeyframeAnimation();
+	anim.delay= 1/5;
+	for(var i=1;i<=2;i++){
+	    anim.addFrame(rpg_tutorial.ss.getFrame('hero-'+ dir +'-'+i+'.png'));
+	}
+    monster.runAction(anim);
+    
+    // on stop show front facing
+    goog.events.listen(move,lime.animation.Event.STOP,function(){
+        anim.stop();
+        monster.setFill(rpg_tutorial.ss.getFrame('hero-f-0.png'));
+    })
+    
+}

@@ -5,45 +5,66 @@
 	<key>frames</key>
 	<dict>
 		
-		<key>walking-e0000.png</key>
+		<key>hero-f-0.png</key>
 		<dict>
 			<key>x</key>
-			<real>251</real>
-			<key>y</key>
-			<real>171</real>
-			<key>width</key>
-			<real>50</real>
-			<key>height</key>
-			<real>84</real>
-			<key>offsetX</key>
 			<real>2</real>
+			<key>y</key>
+			<real>2</real>
+			<key>width</key>
+			<real>27</real>
+			<key>height</key>
+			<real>32</real>
+			<key>offsetX</key>
+			<real>3</real>
 			<key>offsetY</key>
-			<real>-8</real>
+			<real>0</real>
 			<key>originalWidth</key>
-			<real>128</real>
+			<real>32</real>
 			<key>originalHeight</key>
-			<real>128</real>
+			<real>32</real>
 		</dict>
 		
-		<key>walking-e0001.png</key>
+		<key>hero-f-1.png</key>
 		<dict>
 			<key>x</key>
-			<real>322</real>
+			<real>2</real>
 			<key>y</key>
-			<real>337</real>
+			<real>36</real>
 			<key>width</key>
-			<real>48</real>
+			<real>27</real>
 			<key>height</key>
-			<real>82</real>
+			<real>32</real>
 			<key>offsetX</key>
-			<real>7</real>
+			<real>3</real>
 			<key>offsetY</key>
-			<real>-6</real>
+			<real>1</real>
 			<key>originalWidth</key>
-			<real>128</real>
+			<real>32</real>
 			<key>originalHeight</key>
-			<real>128</real>
+			<real>32</real>
 		</dict>
+		
+		<key>hero-f-2.png</key>
+		<dict>
+			<key>x</key>
+			<real>2</real>
+			<key>y</key>
+			<real>69</real>
+			<key>width</key>
+			<real>27</real>
+			<key>height</key>
+			<real>32</real>
+			<key>offsetX</key>
+			<real>3</real>
+			<key>offsetY</key>
+			<real>0</real>
+			<key>originalWidth</key>
+			<real>32</real>
+			<key>originalHeight</key>
+			<real>32</real>
+		</dict>
+		
 	</dict>
 	<key>texture</key>
 	<dict>
