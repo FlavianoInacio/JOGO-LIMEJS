@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:6b7ddd7a3ededc51dcacbd47a9d87d6c:f280f061879ce584eb4f5d56f00d33c0:9b77b9722a17a68ee25850f70f80e311$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+-->
+<TextureAtlas imagePath="friend.png" width="31" height="299">
+    <sprite n="friend-c-1.png" x="2" y="35" w="26" h="31" pX="0.5" pY="0.5" oX="3" oY="1" oW="32" oH="32"/>
+    <sprite n="friend-c-2.png" x="2" y="68" w="26" h="31" pX="0.5" pY="0.5" oX="4" oY="0" oW="34" oH="31"/>
+    <sprite n="friend-d-1.png" x="2" y="200" w="24" h="31" pX="0.5" pY="0.5" oX="3" oY="0" oW="33" oH="31"/>
+    <sprite n="friend-d-2.png" x="2" y="233" w="24" h="31" pX="0.5" pY="0.5" oX="3" oY="0" oW="33" oH="31"/>
+    <sprite n="friend-e-1.png" x="2" y="167" w="25" h="31" pX="0.5" pY="0.5" oX="5" oY="1" oW="33" oH="33"/>
+    <sprite n="friend-e-2.png" x="2" y="266" w="24" h="31" pX="0.5" pY="0.5" oX="5" oY="0" oW="33" oH="32"/>
+    <sprite n="friend-f-0.png" x="2" y="2" w="27" h="31" pX="0.5" pY="0.5" oX="0" oY="0" oW="30" oH="31"/>
+    <sprite n="friend-f-1.png" x="2" y="101" w="26" h="31" pX="0.5" pY="0.5" oX="4" oY="1" oW="32" oH="32"/>
+    <sprite n="friend-f-2.png" x="2" y="134" w="26" h="31" pX="0.5" pY="0.5" oX="1" oY="1" oW="32" oH="33"/>
+</TextureAtlas>

@@ -17,6 +17,7 @@ goog.require('lime.animation.MoveBy');
 goog.require('lime.SpriteSheet');
 goog.require('lime.parser.JSON');
 goog.require('lime.ASSETS.hero.plist');
+goog.require('lime.ASSETS.friend.plist');
 
 rpg_tutorial.WIDTH = 768;
 rpg_tutorial.HEIGHT = 1004;
@@ -26,7 +27,8 @@ rpg_tutorial.HEIGHT = 1004;
    rpg_tutorial.start = function(){ 
 	rpg_tutorial.director = new lime.Director(document.body, rpg_tutorial.WIDTH, rpg_tutorial.HEIGHT);
 	rpg_tutorial.director.makeMobileWebAppCapable();
-	rpg_tutorial.ss = new lime.SpriteSheet('hero.png',lime.ASSETS.hero.plist);
+	rpg_tutorial.ss = new lime.SpriteSheet('sprites/hero.png',lime.ASSETS.hero.plist);
+	rpg_tutorial.ssf = new lime.SpriteSheet('sprites/friend.png',lime.ASSETS.friend.plist);
 	rpg_tutorial.menuInicial();
 };
 
@@ -104,26 +106,7 @@ rpg_tutorial.loadGame = function() {
    	goog.events.listen(mapScene,['mousedown','touchstart'],function(e){
    		if(conversas>4)
    		{
-   			  rpg_tutorial.moveToPosition(hero,mapScene.localToNode(e.position,mapLayer));
-   		/*	var evento = new lime.animation.MoveTo(e.position.x,e.position.y).setDuration(2);
-   			var eventoOr = new lime.animation.MoveTo(e.position.x,e.position.y-80).setDuration(2);
-   			hero.runAction(evento);
-			heroFriend.runAction(eventoOr);
-   			if(hero.getPosition().y < e.position.y){
-   				hero.setFill(hero1.anda);
-				heroFriend.setFill(hero1Friend.anda);
-   			}
-   			else
-   			{
-   				hero.setFill(hero1.costas);
-				heroFriend.setFill(hero1Friend.costas);
-   			}
-			
-			
-			e.swallow(['mouseup','touchend','touchcancel'],function(){
-			hero.setFill(hero1.frente);
-			heroFriend.setFill(hero1Friend.frente);
-		}); */
+   			  rpg_tutorial.moveToPosition(hero,mapScene.localToNode(e.position,mapLayer),heroFriend);
    		}
    		else if(conversas==0)
    		{
@@ -199,11 +182,10 @@ rpg_tutorial.labelFace = function(personagemCaminho)
 // azul  = Onirien
 // irmao = Thir
 
-rpg_tutorial.moveToPosition = function(monster,pos){
+rpg_tutorial.moveToPosition = function(monster,pos,heroFriend){
     
     var delta = goog.math.Coordinate.difference(pos,monster.getPosition()),
         angle = Math.atan2(-delta.y,delta.x);
-    
     //determine the direction    
     var dir = Math.round(angle/(Math.PI*2)*8);
     var dirs = ['d','c','c','c','e','f','f','f'];
@@ -211,21 +193,28 @@ rpg_tutorial.moveToPosition = function(monster,pos){
     dir = dirs[dir];
     
     //move
-    var move =new lime.animation.MoveBy(delta).setEasing(lime.animation.Easing.LINEAR).setSpeed(1);
+    var move =new lime.animation.MoveBy(delta).setEasing(lime.animation.Easing.LINEAR).setSpeed(2);
     monster.runAction(move);
+    heroFriend.runAction(move);
 	
 	// show animation
 	var anim = new lime.animation.KeyframeAnimation();
+	var animf = new lime.animation.KeyframeAnimation();
 	anim.delay= 1/5;
+	animf.delay= 1/5;
 	for(var i=1;i<=2;i++){
 	    anim.addFrame(rpg_tutorial.ss.getFrame('hero-'+ dir +'-'+i+'.png'));
+	    animf.addFrame(rpg_tutorial.ssf.getFrame('friend-'+ dir +'-'+i+'.png'));
 	}
     monster.runAction(anim);
+    heroFriend.runAction(animf);
     
     // on stop show front facing
     goog.events.listen(move,lime.animation.Event.STOP,function(){
         anim.stop();
+        animf.stop();
         monster.setFill(rpg_tutorial.ss.getFrame('hero-f-0.png'));
+        heroFriend.setFill(rpg_tutorial.ssf.getFrame('friend-f-0.png'));
     })
     
 }
